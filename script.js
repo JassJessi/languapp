@@ -61,9 +61,11 @@ checaResposta: function(user){
     if(this.qatual.correta == user){
         console.log("Correta")
         this.Totalpontos++;
+        this.mostraresposta();
     }
     else{
         console.log("Errada")
+        this.mostraresposta();
     }
     this.atualizaPontos();
     this.Proximaperg();
@@ -73,7 +75,28 @@ checaResposta: function(user){
 atualizaPontos: function(){
     let scoreDiv = document.getElementById('pontos');
     scoreDiv.textContent = `Sua pontuação é: ${this.Totalpontos}`;
-} 
+},
+
+mostraresposta: function(correto){
+    let resultDiv = document.getElementById('result');
+    let result = '';
+    //formatar com a mensagem será exibida
+    if(correto ==  true){
+        result = 'Resposta Correta';
+    }
+    else{
+        //obtendo a questão atual
+        let pergunta = perguntas[this.Atualpos];
+        //obtenha o indice da resposta correta da questão atual
+        let cindice = pergunta.correta; 
+        //obtenha o texto da resposta atual
+        let ctexto = pergunta.alternativas[cindice];
+        result = `Incorreto! Resposta Correta: ${ctexto}`;
+    }
+ //Erro ao mostrar a alternativa correta (consertar)
+    resultDiv.textContent = result;
+}
+
 
 }
 
