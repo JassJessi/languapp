@@ -61,11 +61,11 @@ checaResposta: function(user){
     if(this.qatual.correta == user){
         console.log("Correta")
         this.Totalpontos++;
-        this.mostraresposta();
+        this.mostraresposta(true);
     }
     else{
         console.log("Errada")
-        this.mostraresposta();
+        this.mostraresposta(false);
     }
     this.atualizaPontos();
     this.Proximaperg();
@@ -81,7 +81,7 @@ mostraresposta: function(correto){
     let resultDiv = document.getElementById('result');
     let result = '';
     //formatar com a mensagem será exibida
-    if(correto ==  true){
+    if(correto){
         result = 'Resposta Correta';
     }
     else{
